@@ -25,5 +25,13 @@
         }
         public Guid Guid { get; private set; }
     }
+    public class GuidService
+    {
+        public IScopedGuid scoped;
+        public GuidService(IScopedGuid scopedGuid)
+        {
+            scoped = scopedGuid;
+        }
+    }
 }
       

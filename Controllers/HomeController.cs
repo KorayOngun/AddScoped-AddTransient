@@ -11,12 +11,15 @@ namespace IoCTest.Controllers
         private readonly IScopedGuid scopedGuid2;
         private readonly ITransientGuid transientGuid;
         private readonly ITransientGuid transientGuid2;
-
-        public HomeController(ILogger<HomeController> logger,IScopedGuid s1, IScopedGuid s2, ITransientGuid t1, ITransientGuid t2)
+        private readonly GuidService _guidService;
+        
+        public HomeController(ILogger<HomeController> logger,IScopedGuid s1, IScopedGuid s2, ITransientGuid t1, ITransientGuid t2,GuidService guidService)
         {
             _logger = logger;
             scopedGuid = s1;
             scopedGuid2 = s2; // s1 == s2    
+            _guidService = guidService; // _guidservice.scoped == s1 == s2
+            
 
             transientGuid = t1;
             transientGuid2 = t2; // t1!=t2   
@@ -24,11 +27,14 @@ namespace IoCTest.Controllers
 
         public IActionResult Index()
         {
+
             ViewBag.ScopedGuid = scopedGuid.Guid; 
             ViewBag.ScopedGuid2 = scopedGuid2.Guid; // scopeGuid.Guid == scopeGuid2.Guid    
-
+            
             ViewBag.TransientGuid = transientGuid.Guid;
             ViewBag.TransientGuid2 = transientGuid2.Guid; // transientGuid.Guid != transientGuid2.Guid 
+
+            ViewBag.GuidService = _guidService.scoped.Guid;
 
             return View();
         }
