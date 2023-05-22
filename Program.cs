@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IScopedGuid, Scope>();
-builder.Services.AddTransient<ITransientGuid, Transient>();
+builder.Services.AddTransient<ITransientGuid, Transient>();    
 
 var app = builder.Build();
 

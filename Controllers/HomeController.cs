@@ -16,16 +16,16 @@ namespace IoCTest.Controllers
         {
             _logger = logger;
             scopedGuid = s1;
-            scopedGuid2 = s2; // s1 == s2 
+            scopedGuid2 = s2; // s1 == s2    
 
             transientGuid = t1;
-            transientGuid2 = t2; // t1!=t2
+            transientGuid2 = t2; // t1!=t2   
         }
 
         public IActionResult Index()
         {
             ViewBag.ScopedGuid = scopedGuid.Guid; 
-            ViewBag.ScopedGuid2 = scopedGuid2.Guid; // scopeGuid.Guid == scopeGuid2.Guid 
+            ViewBag.ScopedGuid2 = scopedGuid2.Guid; // scopeGuid.Guid == scopeGuid2.Guid    
 
             ViewBag.TransientGuid = transientGuid.Guid;
             ViewBag.TransientGuid2 = transientGuid2.Guid; // transientGuid.Guid != transientGuid2.Guid 
